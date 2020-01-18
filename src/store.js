@@ -1,7 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
+import login from './reducers/login'
 
 export default createStore(
-  combineReducers({}),
+  combineReducers({
+      login
+  }),
   applyMiddleware(promiseMiddleware)
 )
