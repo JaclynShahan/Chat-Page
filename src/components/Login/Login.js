@@ -13,14 +13,17 @@ class Login extends Component {
   }
 
   authUser = () => {
-    Axios.get(`/api/authUser?username=${this.props.login.user.username}&password=${this.props.login.user.password}`) 
-  .then(resp => {
+    Axios.get(
+      `/api/authUser?username=${this.props.login.user.username}&password=${
+        this.props.login.user.password
+      }`
+    ).then(resp => {
       console.log('Working')
-      if(this.props.verifyUser(resp.data)) {
-      console.log(resp.data)
-      this.props.setAuthentication(resp.data)
+      if (this.props.verifyUser(resp.data)) {
+        console.log(resp.data)
+        this.props.setAuthentication(resp.data)
       } else {
-          alert('Username or Password is incorrect. Please try again.')
+        alert('Username or Password is incorrect. Please try again.')
       }
     })
   }
@@ -85,10 +88,10 @@ const mapDispatchToProps = dispatch => ({
     })
   },
   verifyUser (user) {
-      dispatch({
-          type: 'VERIFY_USER',
-          payload: user
-      })
+    dispatch({
+      type: 'VERIFY_USER',
+      payload: user
+    })
   }
 })
 
