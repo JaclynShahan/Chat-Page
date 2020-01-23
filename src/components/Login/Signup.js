@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios'
+import { Modal } from 'antd';
 
 class Signup extends Component {
   constructor () {
@@ -9,7 +10,23 @@ class Signup extends Component {
   }
 
   render () {
-    return <div />
+    return <div>
+        <Modal
+        onOk={this.addUser}
+        okText="Save"
+        title="Create an account"
+        onCancel={() => this.props.setShowSignup(false)}
+        visible={this.props.signup.showSignup}
+        >
+        <table>
+            <tbody>
+                
+            </tbody>
+        </table>
+
+        </Modal>
+
+    </div>
   }
 }
 
@@ -56,7 +73,7 @@ const mapDispatchToProps = dispatch => ({
   },
   setShowSignup (val) {
     dispatch({
-      type: 'SET_SHOW_SIGNUP',
+      type: 'SHOW_SIGNUP',
       payload: val
     })
   }

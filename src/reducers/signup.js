@@ -24,7 +24,7 @@ export default function reducer (state = initialState, action) {
       return { ...tempState, createPassword: action.payload }
     case 'SET_REDIRECT':
       return { ...tempState, redirect: action.payload }
-    case 'SET_SHOW_SIGNUP':
+    case 'SHOW_SIGNUP':
       return { ...tempState, showSignup: action.payload }
   }
   return tempState
