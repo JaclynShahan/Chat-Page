@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios'
-import { Modal } from 'antd';
+import { Modal, Button, Input } from 'antd'
 
 class Signup extends Component {
   constructor () {
@@ -9,24 +9,114 @@ class Signup extends Component {
     this.state = {}
   }
 
+  addUser = e => {
+    Axios.post(`/api/addUser`, {
+      firstName: this.props.signup.firstName,
+      lastName: this.props.signup.lastName,
+      email: this.props.signup.email,
+      createUsername: this.props.signup.createUsername,
+      createPassword: this.props.signup.createPassword,
+      image: this.props.signup.image
+    }).then(resp => {
+      e.preventDefault()
+      this.props.setShowSignup(false)
+      this.props.setUserList(resp.data)
+      console.log('Response:', resp)
+    })
+  }
+
   render () {
-    return <div>
+    //console.log(this.props.signup.setShowSignup)
+    return (
+      <div>
+        <Button onClick={() => this.props.setShowSignup(true)}>
+          Create Account
+        </Button>
         <Modal
-        onOk={this.addUser}
-        okText="Save"
-        title="Create an account"
-        onCancel={() => this.props.setShowSignup(false)}
-        visible={this.props.signup.showSignup}
+          onOk={this.addUser}
+          okText='Save'
+          title='Create an account'
+          onCancel={() => this.props.setShowSignup(false)}
+          visible={this.props.signup.showSignup}
         >
-        <table>
+          <table>
             <tbody>
-                
+              <tr>
+                <td>
+                  <span>First Name:</span>
+                </td>
+                <td>
+                  <Input
+                    onChange={e => this.props.setFirstName(e)}
+                    value={this.props.signup.firstName}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Last Name:</span>
+                </td>
+                <td>
+                  <Input
+                    onChange={e => this.props.setLastName(e)}
+                    value={this.props.signup.lastName}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Email:</span>
+                </td>
+                <td>
+                  <Input
+                    onChange={e => this.props.setEmail(e)}
+                    value={this.props.signup.email}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Create Username:</span>
+                </td>
+                <td>
+                  <Input
+                    onChange={e => this.props.setCreateUsername(e)}
+                    value={this.props.signup.createUsername}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Create Password:</span>
+                </td>
+                <td>
+                  <Input
+                    onChange={e => this.props.setCreatePassword(e)}
+                    value={this.props.signup.createPassword}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Image Url:</span>
+                </td>
+                <td>
+                  <Input
+                    onChange={e => this.props.setImage(e)}
+                    value={this.props.signup.image}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Button>Save</Button>
+                </td>
+              </tr>
             </tbody>
-        </table>
-
+          </table>
         </Modal>
-
-    </div>
+      </div>
+    )
   }
 }
 
@@ -75,6 +165,18 @@ const mapDispatchToProps = dispatch => ({
     dispatch({
       type: 'SHOW_SIGNUP',
       payload: val
+    })
+  },
+  setUserList (arr) {
+    dispatch({
+      type: 'SET_USER_LIST',
+      payload: arr
+    })
+  },
+  setImage (e) {
+    dispatch({
+      type: 'SET_IMAGE',
+      payload: e.target.value
     })
   }
 })

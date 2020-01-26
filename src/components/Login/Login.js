@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Icon, Button } from 'antd'
 import { connect } from 'react-redux'
 import Axios from 'axios'
+import Signup from './Signup'
 
 class Login extends Component {
   constructor () {
@@ -56,7 +57,7 @@ class Login extends Component {
               Login
             </Button>
             <span>OR</span>
-            <Button>Create Account</Button>
+           <Signup />
           </div>
         </form>
       </div>

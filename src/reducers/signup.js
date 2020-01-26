@@ -5,7 +5,9 @@ const initialState = {
   createUsername: '',
   createPassword: '',
   redirect: '',
-  showSignup: false
+  showSignup: false,
+  image: '',
+  userList: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -26,6 +28,10 @@ export default function reducer (state = initialState, action) {
       return { ...tempState, redirect: action.payload }
     case 'SHOW_SIGNUP':
       return { ...tempState, showSignup: action.payload }
+    case 'SET_IMAGE':
+      return { ...tempState, image: action.payload }
+    case 'SET_USER_LIST':
+      return { ...tempState, userList: action.payload }
   }
   return tempState
 }

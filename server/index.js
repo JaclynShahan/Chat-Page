@@ -67,6 +67,15 @@ app.get(`/api/authUser`, (req, res) => {
 //     res.status(200).send(false)
 //   }
 // })
+app.post(`/api/addUser`, (req, res) => {
+    const { firstName, lastName, email, createUsername, createPassword, image} = req.body
+    console.log('Request received', firstName, lastName, email, createUsername, createPassword, image)
+    console.log(req.body)
+    const dbInstance = req.app.get('db')
+    dbInstance.addUser(firstName, lastName, email, createUsername, lastName, image).then(() => {
+      getUser(req, res)
+    })
+  })
 
 massive(process.env.connectionString).then(db => {
   app.set('db', db)
