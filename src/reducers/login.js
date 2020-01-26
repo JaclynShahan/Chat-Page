@@ -6,7 +6,9 @@ const initialState = {
   authentication: false,
   user: {
     username: 'JaclynFoster',
-    password: 'Password'
+    password: 'Password',
+    email: 'Jaclyndshahan@gmail.com',
+    image: 'https://i.imgur.com/e225YR5.jpg'
   }
 }
 

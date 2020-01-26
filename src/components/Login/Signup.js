@@ -107,11 +107,7 @@ class Signup extends Component {
                   />
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <Button>Save</Button>
-                </td>
-              </tr>
+             
             </tbody>
           </table>
         </Modal>
