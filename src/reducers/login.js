@@ -9,7 +9,11 @@ const initialState = {
     password: 'Password',
     email: 'Jaclyndshahan@gmail.com',
     image: 'https://i.imgur.com/e225YR5.jpg'
-  }
+  },
+  messages: [],
+  response: false,
+  reply: "",
+
 }
 
 export default function reducer (state = initialState, action) {
@@ -31,6 +35,12 @@ export default function reducer (state = initialState, action) {
         user: action.payload,
         isLoading: false
       })
+      case 'USER_MESSAGES':
+      return {...tempState, messages: action.payload}
+      case 'MESSAGE_RESPONSE':
+      return {...tempState, response: action.payload}
+      case 'MESSAGE_REPLY':
+      return {...tempState, reply: action.payload}
   }
   return tempState
 }
