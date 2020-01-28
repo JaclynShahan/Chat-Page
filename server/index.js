@@ -4,10 +4,17 @@ const massive = require('massive')
 const { json } = require('body-parser')
 const session = require('express-session')
 require('dotenv').config()
-
-const controller = require(`${__dirname}/controller/controller`)
-
+const socketIo = require('socket.io')
+const http = require('http')
 const app = express()
+const controller = require(`${__dirname}/controller/controller`)
+const index = require("../server/index.js");
+
+const server = http.createServer(app);
+const io = socketIo(server)
+app.use(index(io))
+
+
 
 app.use(cors())
 app.use(express.json())
@@ -18,6 +25,21 @@ app.use(
     saveUninitialized: true
   })
 )
+
+
+let messages = []
+
+io.on('connection', socket => {
+  console.log('New Client Connected')
+  socket.emit('msgs', messages)
+  socket.on('send_message', incomingMessage => {
+    messages.push(incomingMessage)
+    socket.emit('msgs', messages)
+  })
+  socket.on('disconnect', () => {
+    console.log('Client Disconnected')
+  })
+})
 
 app.get('/api/login', controller.loginUser)
 app.put('/api/logout', controller.logoutUser)
@@ -32,29 +54,29 @@ app.get(`/api/authUser`, (req, res) => {
   const dbInstance = req.app.get('db')
   const { username, password } = req.body
   console.log('Verified', username, password)
-  dbInstance.getUser(req.query.username, req.query.password)
-  .then((resp) => {
+  dbInstance
+    .getUser(req.query.username, req.query.password)
+    .then(resp => {
       console.log(resp)
       res.status(200).send(resp)
-  })
-  .catch((err) => {
+    })
+    .catch(err => {
       console.log(err)
-  })
-//   if (
-//     username == req.params.username &&
-//     password == req.params.password
-//   ) {
-//     dbInstance.getUser(req.query.username, req.query.password).then(() => {
-//         app.get('/api/login', controller.loginUser)
-//         getUser(req, res.status(200).send(true))
-//       }).catch((err) => {
-//           console.log(err)
-//       })
-  
-//   } else {
-//     res.status(200).send(false)
-//   }
- 
+    })
+  //   if (
+  //     username == req.params.username &&
+  //     password == req.params.password
+  //   ) {
+  //     dbInstance.getUser(req.query.username, req.query.password).then(() => {
+  //         app.get('/api/login', controller.loginUser)
+  //         getUser(req, res.status(200).send(true))
+  //       }).catch((err) => {
+  //           console.log(err)
+  //       })
+
+  //   } else {
+  //     res.status(200).send(false)
+  //   }
 })
 // app.post(`/api/authUser`, (req, res) => {
 //   console.log('User Request Received')
@@ -68,14 +90,31 @@ app.get(`/api/authUser`, (req, res) => {
 //   }
 // })
 app.post(`/api/addUser`, (req, res) => {
-    const { firstName, lastName, email, createUsername, createPassword, image} = req.body
-    console.log('Request received', firstName, lastName, email, createUsername, createPassword, image)
-    console.log(req.body)
-    const dbInstance = req.app.get('db')
-    dbInstance.addUser(firstName, lastName, email, createUsername, lastName, image).then(() => {
+  const {
+    firstName,
+    lastName,
+    email,
+    createUsername,
+    createPassword,
+    image
+  } = req.body
+  console.log(
+    'Request received',
+    firstName,
+    lastName,
+    email,
+    createUsername,
+    createPassword,
+    image
+  )
+  console.log(req.body)
+  const dbInstance = req.app.get('db')
+  dbInstance
+    .addUser(firstName, lastName, email, createUsername, lastName, image)
+    .then(() => {
       getUser(req, res)
     })
-  })
+})
 
 massive(process.env.connectionString).then(db => {
   app.set('db', db)
