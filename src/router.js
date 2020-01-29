@@ -4,12 +4,14 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Login from './components/Login/Login'
 import Chat from './components/Chat/Chat'
+import Home from './components/Home/Home'
 
 export default (
   <Provider store={store}>
     <Switch>
       <Route exact path='/' component={Login} />
       <Route path='chat' component={Chat} />
+      <Route path='home' component={Home} />
     </Switch>
   </Provider>
 )

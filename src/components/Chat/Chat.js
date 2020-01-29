@@ -10,13 +10,13 @@ class Chat extends Component {
     this.state = {}
   }
 
-  componentDidMount () {
-    var elmnt = document.getElementById('content')
-    socket.on('msgs', data => {
-      console.log(data)
-      , () => elmnt.scrollIntoView()
-  })
-  }
+//   componentDidMount () {
+//     var elmnt = document.getElementById('content')
+//     socket.on('msgs', data => {
+//       console.log(data)
+//       , () => elmnt.scrollIntoView()
+//   })
+//   }
   sendMessage = e => {
     if (e.preventDefault) {
       e.preventDefault()

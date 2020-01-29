@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
+//import Chat from './Chat'
 
 class Home extends Component {
-    constuctor() {
+    constructor() {
         super()
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     render() {
