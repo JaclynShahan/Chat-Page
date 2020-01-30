@@ -3,6 +3,7 @@ import { Icon, Button } from 'antd'
 import { connect } from 'react-redux'
 import Axios from 'axios'
 import Signup from './Signup'
+import './Login.css'
 
 class Login extends Component {
   constructor () {
@@ -31,8 +32,10 @@ class Login extends Component {
   render () {
     console.log(this.props.login.user)
     return (
-      <div>
-        <form>
+      <div className="backgroundInfo">
+            <div className="sideOne">
+
+            </div>
           <img />
           <div>
             <label>
@@ -59,7 +62,7 @@ class Login extends Component {
             <span>OR</span>
            <Signup />
           </div>
-        </form>
+        
       </div>
     )
   }
