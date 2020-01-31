@@ -29,7 +29,7 @@ class Signup extends Component {
     //console.log(this.props.signup.setShowSignup)
     return (
       <div>
-        <Button onClick={() => this.props.setShowSignup(true)}>
+        <Button className="inputStyle" onClick={() => this.props.setShowSignup(true)}>
           Create Account
         </Button>
         <Modal

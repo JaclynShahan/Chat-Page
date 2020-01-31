@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Icon, Button } from 'antd'
+import { Icon, Button, Input } from 'antd'
 import { connect } from 'react-redux'
 import Axios from 'axios'
 import Signup from './Signup'
 import './Login.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 class Login extends Component {
   constructor () {
@@ -36,32 +38,36 @@ class Login extends Component {
             <div className="sideOne">
 
             </div>
-          <img />
-          <div>
-            <label>
-              <Icon type='user' />
-            </label>
-            <input
+          
+          <div className="sideTwo">
+              
+           
+              <div className="loginStyle">
+              
+              <img className="inputImage" src="https://cahtc.com/wp-content/uploads/2016/11/user-icon.png"/>
+            <Input
+            className="inputStyle"
               type='text'
               placeholder='Username'
               onChange={e => this.props.setUsername(e)}
             />
-            <label>
-              <Icon type='unlock' />
-            </label>
-            <input
+        
+         
+            <Input
+            className="inputStyle"
               type='password'
               onChange={e => this.props.setPassword(e)}
               placeholder='Password'
             />
-          </div>
-          <div>
-            <Button onClick={() => this.authUser()} type='submit'>
+               
+            <Button className="inputStyle" onClick={() => this.authUser()} type='submit'>
               Login
             </Button>
             <span>OR</span>
            <Signup />
           </div>
+          </div>
+       
         
       </div>
     )
