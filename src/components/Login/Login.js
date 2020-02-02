@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import Axios from 'axios'
 import Signup from './Signup'
 import './Login.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 class Login extends Component {
   constructor () {
@@ -34,41 +34,40 @@ class Login extends Component {
   render () {
     console.log(this.props.login.user)
     return (
-      <div className="backgroundInfo">
-            <div className="sideOne">
+      <div className='loginBackground'>
+       
 
-            </div>
-          
-          <div className="sideTwo">
-              
-           
-              <div className="loginStyle">
-              
-              <img className="inputImage" src="https://cahtc.com/wp-content/uploads/2016/11/user-icon.png"/>
+        <div>
+          <div className='loginStyle'>
+            <img
+              className='inputImage'
+              src='https://cahtc.com/wp-content/uploads/2016/11/user-icon.png'
+            />
             <Input
-            className="inputStyle"
+              className='inputStyle'
               type='text'
               placeholder='Username'
               onChange={e => this.props.setUsername(e)}
             />
-        
-         
+
             <Input
-            className="inputStyle"
+              className='inputStyle'
               type='password'
               onChange={e => this.props.setPassword(e)}
               placeholder='Password'
             />
-               
-            <Button className="inputStyle" onClick={() => this.authUser()} type='submit'>
+
+            <Button
+              className='inputStyle'
+              onClick={() => this.authUser()}
+              type='submit'
+            >
               Login
             </Button>
             <span>OR</span>
-           <Signup />
+            <Signup />
           </div>
-          </div>
-       
-        
+        </div>
       </div>
     )
   }

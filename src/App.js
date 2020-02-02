@@ -9,7 +9,7 @@ import router from './router'
 function App () {
   return (
     <div>
-      <div className='App'>
+      <div className='routeBar'>
       
         <Link to='/'>Login</Link>
         <Link to='home'>Home</Link>
