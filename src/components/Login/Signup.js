@@ -26,91 +26,60 @@ class Signup extends Component {
   }
 
   render () {
-    //console.log(this.props.signup.setShowSignup)
+    // console.log(this.props.signup.setShowSignup)
     return (
       <div>
-        <Button className="inputStyle" onClick={() => this.props.setShowSignup(true)}>
+        <span className="spans">First Name:</span>
+
+        <Input
+        className="signupInput"
+          onChange={e => this.props.setFirstName(e)}
+          value={this.props.signup.firstName}
+        />
+
+        <span className="spans">Last Name:</span>
+
+        <Input
+        className="signupInput"
+          onChange={e => this.props.setLastName(e)}
+          value={this.props.signup.lastName}
+        />
+
+        <span className="spans">Email:</span>
+
+        <Input
+        className="signupInput"
+          onChange={e => this.props.setEmail(e)}
+          value={this.props.signup.email}
+        />
+
+        <span className="spans">Create Username:</span>
+
+        <Input
+        className="signupInput"
+          onChange={e => this.props.setCreateUsername(e)}
+          value={this.props.signup.createUsername}
+        />
+
+        <span className="spans">Create Password:</span>
+
+        <Input
+        className="signupInput"
+          onChange={e => this.props.setCreatePassword(e)}
+          value={this.props.signup.createPassword}
+        />
+
+        <span className="spans">Image Url:</span>
+
+        <Input
+        className="signupInput"
+          onChange={e => this.props.setImage(e)}
+          value={this.props.signup.image}
+        />
+
+        <Button className='inputStyle' onClick={this.addUser}>
           Create Account
         </Button>
-        <Modal
-          onOk={this.addUser}
-          okText='Save'
-          title='Create an account'
-          onCancel={() => this.props.setShowSignup(false)}
-          visible={this.props.signup.showSignup}
-        >
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <span>First Name:</span>
-                </td>
-                <td>
-                  <Input
-                    onChange={e => this.props.setFirstName(e)}
-                    value={this.props.signup.firstName}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Last Name:</span>
-                </td>
-                <td>
-                  <Input
-                    onChange={e => this.props.setLastName(e)}
-                    value={this.props.signup.lastName}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Email:</span>
-                </td>
-                <td>
-                  <Input
-                    onChange={e => this.props.setEmail(e)}
-                    value={this.props.signup.email}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Create Username:</span>
-                </td>
-                <td>
-                  <Input
-                    onChange={e => this.props.setCreateUsername(e)}
-                    value={this.props.signup.createUsername}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Create Password:</span>
-                </td>
-                <td>
-                  <Input
-                    onChange={e => this.props.setCreatePassword(e)}
-                    value={this.props.signup.createPassword}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Image Url:</span>
-                </td>
-                <td>
-                  <Input
-                    onChange={e => this.props.setImage(e)}
-                    value={this.props.signup.image}
-                  />
-                </td>
-              </tr>
-             
-            </tbody>
-          </table>
-        </Modal>
       </div>
     )
   }

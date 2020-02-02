@@ -12,8 +12,8 @@ function App () {
       <div className='routeBar'>
       
         <Link to='/'>Login</Link>
-        <Link to='home'>Home</Link>
-        <Link to='chat'>Chat</Link>
+        <Link to='/home'>Home</Link>
+        <Link to='/chat'>Chat</Link>
       </div>
       {router}
     </div>

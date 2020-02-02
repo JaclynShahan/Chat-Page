@@ -10,8 +10,8 @@ export default (
   <Provider store={store}>
     <Switch>
       <Route exact path='/' component={Login} />
-      <Route path='chat' component={Chat} />
       <Route path='home' component={Home} />
+      <Route path='chat' component={Chat} />
     </Switch>
   </Provider>
 )

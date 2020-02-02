@@ -1,0 +1,16 @@
+.profileContainer{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.sideBar {
+    height: 90vh;
+    width: 35vw;
+    background-color: black;
+    border: 5px solid white;
+    float: left;
+}
